@@ -1,0 +1,34 @@
+{
+  "name": "backpack-api",
+  "version": "1.0.0",
+  "description": "mock api to test walmart product advertising api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pranavanmaru/WalmartProductLookup.git"
+  },
+  "keywords": [
+    "walmartlabs",
+    "retail",
+    "ecommerce"
+  ],
+  "author": "Pranavan Maruthainar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pranavanmaru/WalmartProductLookup/issues"
+  },
+  "homepage": "https://github.com/pranavanmaru/WalmartProductLookup#readme",
+  "dependencies": {
+    "boom": "^7.2.0",
+    "fs": "0.0.1-security",
+    "good": "^8.1.1",
+    "good-file": "^6.0.1",
+    "good-squeeze": "^5.1.0",
+    "hapi": "^17.4.0",
+    "joi": "^13.2.0",
+    "nodemon": "^1.17.3"
+  }
+}
