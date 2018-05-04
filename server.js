@@ -3,8 +3,6 @@
 const hapi = require('hapi'),
       fs = require('fs'),
       wreck = require('wreck'),
-      joi = require('joi'),
-      boom = require('boom'),
       dataAccess = require('./data/dataAccess.js');
 
 const server = new hapi.server({
@@ -58,9 +56,32 @@ const init = async () => {
         }
     });
     
+    //Get All Items
+    server.route({
+        method: 'GET',
+        path: '/items',
+        handler: (request, reply) => {
+            
+            return dataAccess.availableItems;
+        }
+    });
+    
+    //Get Items By Search Term
+    server.route({
+        method: 'GET',
+        path: '/search',
+        handler: (request, reply) => {
+            
+            var searchTerm = request.query.term;
+            var result = dataAccess.searchItem(searchTerm);
+            
+            return result;
+        }
+    });
+    
     try 
     {
-        dataAccess.initDb();
+        await dataAccess.initDb();
     }
     catch(err) 
     {

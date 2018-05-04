@@ -8,7 +8,7 @@ var methods = {
     availableItems : {},
 
     //initialize network call and in memory database
-    initDb: async function initializeAndLoadDatabase(){
+    initDb: async function(){
         var itemIds = this.getItemIds();
         var response = '';
         var data = {};
@@ -45,9 +45,7 @@ var methods = {
             id: response.itemId,
             name: response.name,
             shortDescription: response.shortDescription,
-            longDescription: response.longDescription,
-            searchFlag: false,
-            termCount: 0
+            longDescription: response.longDescription
         };
 
         return item;
@@ -59,7 +57,48 @@ var methods = {
         var itemIds = file.toString().replace(/(\r\n|\n|\r)/gm,"").split(',');
 
         return itemIds;
+    },
+    
+    //returns itemIds of matching products
+    searchItem: function(term){
+        
+        var itemIds = [];
+        var result = {};
+        var itemForwardIndex = buildForwardIndex(term); 
+        
+        Object.entries(itemForwardIndex).forEach(([key, value]) => {
+           if(value.searchHit)
+               itemIds.push(key);
+        });
+        
+        result["itemIds"] = itemIds;
+        return result;
     }
+}
+
+//builds forward index for search term
+function buildForwardIndex(term){
+    
+    var result = {};
+    var termCount = 0;
+    var hit = false;
+    var searchExpression = new RegExp(term.toString(), "g");  
+
+    Object.entries(methods.availableItems).forEach(([key, value]) =>
+    {
+        hit = searchExpression.test(value.name.toLowerCase()) ||
+            searchExpression.test(value.shortDescription.toLowerCase().match) ||
+            searchExpression.test(value.longDescription.toLowerCase().match);
+        
+        var item = {
+            id: key,
+            searchHit: hit
+        };
+
+        result[key] = item;
+    });
+
+    return result;
 }
 
 module.exports = methods;
