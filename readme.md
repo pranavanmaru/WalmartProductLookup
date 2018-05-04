@@ -8,10 +8,10 @@
     id: <itemId>,
     name: <itemName>,
     shortDescription: <shortDescription>,
-    longDescription: <longDescription>,
-    searchHit: <true/false>
+    longDescription: <longDescription>
 }
 ```
+
 * Then a forward index is constructed for the user input search term.
 * A 'GET' endpoint is exposed to access the results.
 
