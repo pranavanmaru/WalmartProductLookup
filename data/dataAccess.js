@@ -8,7 +8,7 @@ var methods = {
     availableItems : {},
 
     //initialize network call and in memory database
-    initDb: async function initializeAndLoadDatabase(){
+    initDb: async function(){
         var itemIds = this.getItemIds();
         var response = '';
         var data = {};
@@ -45,9 +45,7 @@ var methods = {
             id: response.itemId,
             name: response.name,
             shortDescription: response.shortDescription,
-            longDescription: response.longDescription,
-            searchFlag: false,
-            termCount: 0
+            longDescription: response.longDescription
         };
 
         return item;
@@ -59,7 +57,48 @@ var methods = {
         var itemIds = file.toString().replace(/(\r\n|\n|\r)/gm,"").split(',');
 
         return itemIds;
+    },
+    
+    //returns itemIds of matching products
+    searchItem: function(term){
+        
+        var result = [];
+        var itemForwardIndex = this.buildForwardIndex(term); 
+        
+        Object.entries(itemForwardIndex).forEach(([key, value]) => {
+           if(value.searchHit)
+               result.push(key);
+        });
+        
+        return result; 
+    },
+    
+    //builds forward index for search term
+    buildForwardIndex: function(term){
+    
+        var result = {};
+        var termCount = 0;
+        var hit = false;
+        var searchExpression = new RegExp("backpack", "g");        
+        
+        Object.entries(this.availableItems).forEach(([key, value]) =>
+        {
+            hit = value.name.toLowerCase().match(searchExpression);
+
+            console.log(value.name);
+            console.log(hit);
+            
+            var item = {
+                id: key,
+                searchHit: hit != null
+            };
+            
+            result[key] = item;
+        });
+        
+        return result;
     }
+    
 }
 
 module.exports = methods;
