@@ -82,13 +82,13 @@ function buildForwardIndex(term){
     var result = {};
     var termCount = 0;
     var hit = false;
-    var searchExpression = new RegExp(term.toString(), "g");  
+    var searchExpression = new RegExp(term.toLowerCase().toString(), "g");  
 
     Object.entries(methods.availableItems).forEach(([key, value]) =>
     {
         hit = searchExpression.test(value.name.toLowerCase()) ||
-            searchExpression.test(value.shortDescription.toLowerCase().match) ||
-            searchExpression.test(value.longDescription.toLowerCase().match);
+            searchExpression.test(value.shortDescription.toLowerCase()) ||
+            searchExpression.test(value.longDescription.toLowerCase());
         
         var item = {
             id: key,
