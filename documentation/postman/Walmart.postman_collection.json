@@ -27,7 +27,7 @@
 				"url": {
 					"raw": ""
 				},
-				"description": "Gets Items\nReturns set of Items with extracted fields from in-memory database."
+				"description": "Returns set of Items with extracted fields from in-memory database."
 			},
 			"response": []
 		},
@@ -40,7 +40,7 @@
 				"url": {
 					"raw": ""
 				},
-				"description": "Gets Items\nReturns set of Items with extracted fields from in-memory database containing search key in either short description or long description ordered by relevance."
+				"description": "Returns set of Items with extracted fields from in-memory database containing search key in either short description or long description ordered by relevance."
 			},
 			"response": []
 		}

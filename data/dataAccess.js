@@ -62,43 +62,43 @@ var methods = {
     //returns itemIds of matching products
     searchItem: function(term){
         
-        var result = [];
-        var itemForwardIndex = this.buildForwardIndex(term); 
+        var itemIds = [];
+        var result = {};
+        var itemForwardIndex = buildForwardIndex(term); 
         
         Object.entries(itemForwardIndex).forEach(([key, value]) => {
            if(value.searchHit)
-               result.push(key);
+               itemIds.push(key);
         });
         
-        return result;
-    },
-    
-    //builds forward index for search term
-    buildForwardIndex: function(term){
-    
-        var result = {};
-        var termCount = 0;
-        var hit = false;
-        var searchExpression = new RegExp("mattress", "g");        
-        
-        Object.entries(this.availableItems).forEach(([key, value]) =>
-        {
-            hit = value.name.toLowerCase().match(searchExpression);
-
-            console.log(value.name);
-            console.log(hit);
-            
-            var item = {
-                id: key,
-                searchHit: hit != null
-            };
-            
-            result[key] = item;
-        });
-        
+        result["itemIds"] = itemIds;
         return result;
     }
+}
+
+//builds forward index for search term
+function buildForwardIndex(term){
     
+    var result = {};
+    var termCount = 0;
+    var hit = false;
+    var searchExpression = new RegExp(term.toString(), "g");  
+
+    Object.entries(methods.availableItems).forEach(([key, value]) =>
+    {
+        hit = searchExpression.test(value.name.toLowerCase()) ||
+            searchExpression.test(value.shortDescription.toLowerCase().match) ||
+            searchExpression.test(value.longDescription.toLowerCase().match);
+        
+        var item = {
+            id: key,
+            searchHit: hit
+        };
+
+        result[key] = item;
+    });
+
+    return result;
 }
 
 module.exports = methods;
