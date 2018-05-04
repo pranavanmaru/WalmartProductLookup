@@ -1,4 +1,6 @@
 # Walmart Product Lookup
+
+## Introduction
 ![Architecture Diagram](architecture/architecture.jpg)
 
 * When a user searches for an item, it invokes Walmart Product Lookup API and the results are compressed to a lighter model.
