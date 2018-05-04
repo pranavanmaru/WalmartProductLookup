@@ -70,7 +70,7 @@ var methods = {
                result.push(key);
         });
         
-        return result; 
+        return result;
     },
     
     //builds forward index for search term
@@ -79,7 +79,7 @@ var methods = {
         var result = {};
         var termCount = 0;
         var hit = false;
-        var searchExpression = new RegExp("backpack", "g");        
+        var searchExpression = new RegExp("mattress", "g");        
         
         Object.entries(this.availableItems).forEach(([key, value]) =>
         {
