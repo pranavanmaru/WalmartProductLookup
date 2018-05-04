@@ -2,8 +2,10 @@
 
 const hapi = require('hapi'),
       fs = require('fs'),
+      wreck = require('wreck'),
       joi = require('joi'),
-      boom = require('boom');
+      boom = require('boom'),
+      dataAccess = require('./data/dataAccess.js');
 
 const server = new hapi.server({
     
@@ -30,6 +32,8 @@ var options = {
     }
 };
 
+var availableItems = {};
+
 process.on('unhandledRejection', (err) => {
 
     console.log(err);
@@ -54,6 +58,16 @@ const init = async () => {
         }
     });
     
+    try 
+    {
+        dataAccess.initDb();
+    }
+    catch(err) 
+    {
+        console.log(">>>> DB INITIALIZATION ERROR: ");
+        console.log(">>>> " + err);
+    }
+        
     //Start Server
     await server.start();
     console.log(`Server Running at: ${server.info.uri}`);
