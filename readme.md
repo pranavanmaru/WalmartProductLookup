@@ -1,5 +1,5 @@
 # Walmart Product Lookup
-!["Architecture Diagram"](https://drive.google.com/open?id=1KavCZdMG0AVHistdkFWDDNEhmRYA_zSY)
+![Architecture Diagram](https://drive.google.com/open?id=1KavCZdMG0AVHistdkFWDDNEhmRYA_zSY)
 
 ## External APIs Used
 * Walmart Product Lookup API
