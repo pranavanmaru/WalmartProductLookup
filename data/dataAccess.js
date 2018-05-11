@@ -1,7 +1,6 @@
 'use strict';
 
-const hapi = require('hapi'),
-      wreck = require('wreck'),
+const wreck = require('wreck'),
       fs = require('fs');
 
 const methods = {
