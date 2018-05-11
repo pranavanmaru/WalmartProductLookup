@@ -33,7 +33,7 @@
 ## Testing
 * Testing Framework - Mocha
 * Assertion Framework - Chai
-* Mocking Framework - Nock
+* HTTP Request Mocking Framework - Nock
 * Dependency Injection - Rewire
 
 e.g. Navigate to project directory and run the following command to run all tests
