@@ -30,6 +30,17 @@
 * Wreck HTTP Client Utilities
 * Good File and Good Squeeze for Logging
 
+## Testing
+* Testing Framework - Mocha
+* Assertion Framework - Chai
+* HTTP Request Mocking Framework - Nock
+* Dependency Injection - Rewire
+
+e.g. Navigate to project directory and run the following command to run all tests
+```bash
+mocha
+```
+
 ## Future Work
 * Improve forward index with term count (currently complicated due to pending [Stage 1 Proposal](https://github.com/tc39/proposal-optional-chaining) for optional chaining capabilities on JavaScript)
 * Use Mongoose to replace in-memory DB with MongoDB.

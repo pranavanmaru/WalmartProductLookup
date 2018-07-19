@@ -11,7 +11,7 @@ const server = new hapi.server({
     port: 3000
 });
 
-var options = {
+const options = {
     ops:{
         interval: 1000
     },
@@ -29,8 +29,6 @@ var options = {
         }]
     }
 };
-
-var availableItems = {};
 
 process.on('unhandledRejection', (err) => {
 
